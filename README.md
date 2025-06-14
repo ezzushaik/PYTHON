@@ -1,38 +1,53 @@
 # PYTHON
-# 🪨📄✂️ Rock-Paper-Scissors Mini-Game in Python
+#🪨📄✂️ Rock-Paper-Scissors Mini-Game in Python
+import random       # To generate random values
+import os          # To use system specific paremeters and functions
+import re           # To use Regular Expression
 
-A simple and interactive Rock-Paper-Scissors game built using Python for the command line.
+while (1<2):                 # creating a continuous loop
+    # Define Game
+    print ("\n")
+    print ("Rock, Paper, Scissors - Shoot!")
 
-## 🎯 Project Objective
+    # Taking input from user
+    userChoice = input("Choose your weapon [R]ock], [P]aper, [S]cissors, [E]xit: ")
+    
+    # Validating the user input
+    if (not re.match("[SsRrPpEe]", userChoice)) or (len(userChoice) != 1):
+        print ("Please choose a letter:")
+        print ("[R]ock, [S]cissors, [P]aper or [E]xit")
+        continue
 
-This project was created to practice and demonstrate:
-- Python basics
-- Conditional logic
-- Looping structures
-- User input validation
-- Random number generation
-- Clean code structuring
+    # Print the user's choice
+    print ("You chose: " + userChoice)
 
-## 🛠️ Technologies Used
+    # Check if user wants to exit
+    if (userChoice == 'E' or userChoice == 'e' ):
+        print('Exiting Game..')
+        break
 
-- Python 3
-- `random` – for generating the computer’s move
-- `re` – for validating user input with Regular Expressions
-- `os` – for system-level operations *(optional use)*
+    # Create a list of possible choices
+    choices = ['R', 'P', 'S']
+    
+    # Generating Computer's Choice
+    opponenetChoice = random.choice(choices)
+    
+    # Print Computer's Choice
+    print ("I chose: " + opponenetChoice)
 
-## 🔍 Features
-
-- Continuous gameplay in a loop
-- Input validation with regex
-- Random move generation for the computer
-- Proper game logic handling (Win/Lose/Tie)
-- Exit option to end the game gracefully
-
-## 🧪 How to Run
-
-1. Make sure you have Python installed on your system.
-2. Clone this repository or copy the code.
-3. Run the script:
-
-```bash
-python rock_paper_scissors.py
+    # Check Computer's Choice and user's Choice by applying game logic
+    
+    if opponenetChoice == str.upper(userChoice):         # If both chose same value, it's a tie
+        print ("Tie! ")
+    
+    elif opponenetChoice == 'R' and userChoice.upper() == 'S':            # Rock Vs Scissor - Rock/computer Wins
+        print ("Scissors beats rock, I win! ")
+        continue
+    elif opponenetChoice == 'S' and userChoice.upper() == 'P':            # Scissor Vs Paper - Paper/computer Wins
+        print ("Scissors beats paper! I win! ")
+        continue
+    elif opponenetChoice == 'P' and userChoice.upper() == 'R':            # Paper Vs Rock - Paper/computer Wins
+        print ("Paper beat rock, I win! ")
+        continue
+    else:                                                                 # In all the other cases, user wins!
+        print ("You win!")
